@@ -182,6 +182,39 @@ Tuning guidance:
 - Increase `HYBRID_BETA` to favor lexical overlap; increase `HYBRID_GAMMA` to favor domain-category alignment.
 - Re-run benchmark after every tuning change and compare `benchmark_results.md`.
 
+## Threshold Calibration
+
+Use calibration to derive routing thresholds from data (instead of hand-picking).
+
+Run:
+
+```bash
+python -m scripts.calibrate_routing
+```
+
+What it does:
+- loads `data/benchmark_queries.jsonl`
+- precomputes domain routing + topK retrieval once per query
+- sweeps thresholds/margins for:
+  - `cosine_threshold`
+  - `cosine_margin`
+  - `hybrid`
+  - `hybrid_margin`
+- optimizes three objectives:
+  - maximize Source Accuracy
+  - maximize F1(local)
+  - minimize routing cost: `COST_FP_LOCAL * FP_local + COST_FN_LOCAL * FN_local`
+
+Env knobs:
+- `COST_FP_LOCAL` (default `5`)
+- `COST_FN_LOCAL` (default `1`)
+
+Artifacts:
+- `calibration_results.csv` (all tried configs + metrics)
+- `calibration_results.md` (best configs + recommended `.env` blocks)
+
+Recalibrate whenever KB content changes significantly (new items, rewrites, or changed category distribution).
+
 ## Minimal Evaluation Plan
 
 Track these metrics on a curated eval set:
