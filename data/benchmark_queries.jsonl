@@ -1,0 +1,66 @@
+{"id":"q001","query":"How can I update my profile details?","label_type":"positive","expected_source":"local","expected_match":"How do I change my profile information?"}
+{"id":"q002","query":"change my account profile info pls","label_type":"positive","expected_source":"local","expected_match":"How do I change my profile information?"}
+{"id":"q003","query":"where do i edit my profile settings","label_type":"positive","expected_source":"local","expected_match":"How do I change my profile information?"}
+{"id":"q004","query":"Need to reset password, what do I click?","label_type":"positive","expected_source":"local","expected_match":"What steps do I take to reset my password?"}
+{"id":"q005","query":"forgot pass, how reset?","label_type":"positive","expected_source":"local","expected_match":"What steps do I take to reset my password?"}
+{"id":"q006","query":"reset password flow in settings","label_type":"positive","expected_source":"local","expected_match":"What steps do I take to reset my password?"}
+{"id":"q007","query":"Can I change the email linked to my login?","label_type":"positive","expected_source":"local","expected_match":"Is it possible to change my registered email address?"}
+{"id":"q008","query":"update registered email address","label_type":"positive","expected_source":"local","expected_match":"Is it possible to change my registered email address?"}
+{"id":"q009","query":"how do i swap my account email","label_type":"positive","expected_source":"local","expected_match":"Is it possible to change my registered email address?"}
+{"id":"q010","query":"any tips for a secure password?","label_type":"positive","expected_source":"local","expected_match":"Are there any guidelines on setting a strong password?"}
+{"id":"q011","query":"password strength recommendations","label_type":"positive","expected_source":"local","expected_match":"Are there any guidelines on setting a strong password?"}
+{"id":"q012","query":"what makes a strong pass","label_type":"positive","expected_source":"local","expected_match":"Are there any guidelines on setting a strong password?"}
+{"id":"q013","query":"Can I enable 2FA?","label_type":"positive","expected_source":"local","expected_match":"Can I set up two-factor authentication for my account?"}
+{"id":"q014","query":"turn on two factor auth","label_type":"positive","expected_source":"local","expected_match":"Can I set up two-factor authentication for my account?"}
+{"id":"q015","query":"setup authenticator as 2fa","label_type":"positive","expected_source":"local","expected_match":"Enable 2FA with an authenticator app"}
+{"id":"q016","query":"how to set authenticator app for 2fa","label_type":"positive","expected_source":"local","expected_match":"Enable 2FA with an authenticator app"}
+{"id":"q017","query":"Do you support passkeys on browser?","label_type":"positive","expected_source":"local","expected_match":"Do you support passkeys?"}
+{"id":"q018","query":"add a passkey for my account","label_type":"positive","expected_source":"local","expected_match":"Do you support passkeys?"}
+{"id":"q019","query":"I never got password reset mail","label_type":"positive","expected_source":"local","expected_match":"I didn't get the password reset email"}
+{"id":"q020","query":"reset email not received after 10 mins","label_type":"positive","expected_source":"local","expected_match":"I didn't get the password reset email"}
+{"id":"q021","query":"where can i edit my display name","label_type":"positive","expected_source":"local","expected_match":"Where can I update my display name?"}
+{"id":"q022","query":"change display name location?","label_type":"positive","expected_source":"local","expected_match":"Where can I update my display name?"}
+{"id":"q023","query":"edit avatar picture","label_type":"positive","expected_source":"local","expected_match":"Edit avatar?"}
+{"id":"q024","query":"upload new profile photo png","label_type":"positive","expected_source":"local","expected_match":"Edit avatar?"}
+{"id":"q025","query":"verify my email, link expired","label_type":"positive","expected_source":"local","expected_match":"Verify my email address"}
+{"id":"q026","query":"how to re-send verification email","label_type":"positive","expected_source":"local","expected_match":"Verify my email address"}
+{"id":"q027","query":"How do I add a card for billing?","label_type":"positive","expected_source":"local","expected_match":"How do I add a payment method?"}
+{"id":"q028","query":"add paypal payment method","label_type":"positive","expected_source":"local","expected_match":"How do I add a payment method?"}
+{"id":"q029","query":"download my invoice pdf","label_type":"positive","expected_source":"local","expected_match":"Where can I download invoices?"}
+{"id":"q030","query":"where are billing invoices","label_type":"positive","expected_source":"local","expected_match":"Where can I download invoices?"}
+{"id":"q031","query":"am i eligible for a refund","label_type":"positive","expected_source":"local","expected_match":"Can I get a refund?"}
+{"id":"q032","query":"refund within 14 days?","label_type":"positive","expected_source":"local","expected_match":"Can I get a refund?"}
+{"id":"q033","query":"upgrade to higher plan","label_type":"positive","expected_source":"local","expected_match":"Upgrade my plan"}
+{"id":"q034","query":"switch subscription tier","label_type":"positive","expected_source":"local","expected_match":"Upgrade my plan"}
+{"id":"q035","query":"how to cancel my subscription","label_type":"positive","expected_source":"local","expected_match":"Cancel subscription"}
+{"id":"q036","query":"stop renewal but keep access till end","label_type":"positive","expected_source":"local","expected_match":"Cancel subscription"}
+{"id":"q037","query":"pause email alerts","label_type":"positive","expected_source":"local","expected_match":"Pause email notifications"}
+{"id":"q038","query":"mobile push notifications too many","label_type":"positive","expected_source":"local","expected_match":"Mobile push alerts are too noisy"}
+{"id":"q039","query":"How can I export all my data?","label_type":"positive","expected_source":"local","expected_match":"How do I export my data?"}
+{"id":"q040","query":"delete account and personal data","label_type":"positive","expected_source":"local","expected_match":"Delete my account and data"}
+{"id":"q041","query":"app crashes immediately at launch","label_type":"positive","expected_source":"local","expected_match":"App keeps crashing on launch"}
+{"id":"q042","query":"website feels super slow today","label_type":"positive","expected_source":"local","expected_match":"Why is the site slow today?"}
+{"id":"q043","query":"how to spot phishing email from your team","label_type":"positive","expected_source":"local","expected_match":"Recognize a phishing email from us"}
+{"id":"q044","query":"my session ended out of nowhere","label_type":"positive","expected_source":"local","expected_match":"My session was terminated unexpectedly"}
+{"id":"q045","query":"where do i create developer api key","label_type":"positive","expected_source":"local","expected_match":"Where can I find the API key?"}
+{"id":"q046","query":"help!!! my account is locked 😭","label_type":"positive","expected_source":"local","expected_match":"help!!! 😭😭😭 my account is locked"}
+{"id":"q047","query":"restore my settings except notifications only","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q048","query":"can i set minimum password length to 20","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q049","query":"add bank transfer as payment method","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q050","query":"can i pause subscription for 2 months and resume","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q051","query":"can i get yearly invoice breakdown per tax region","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q052","query":"set notification quiet hours by weekday schedule","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q053","query":"recover deleted workspace from 30 days ago","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q054","query":"can i enforce passkeys for all org members","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q055","query":"show webhook example for billing events","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q056","query":"my app crash only on ios 17 beta when offline","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q057","query":"what is the weather in bucharest today","label_type":"ood","expected_source":"compliance"}
+{"id":"q058","query":"write me a poem about databases","label_type":"ood","expected_source":"compliance"}
+{"id":"q059","query":"who won champions league in 2020","label_type":"ood","expected_source":"compliance"}
+{"id":"q060","query":"best restaurants near my location","label_type":"ood","expected_source":"compliance"}
+{"id":"q061","query":"translate this text to german","label_type":"ood","expected_source":"compliance"}
+{"id":"q062","query":"explain quantum entanglement simply","label_type":"ood","expected_source":"compliance"}
+{"id":"q063","query":"generate python code for fibonacci","label_type":"ood","expected_source":"compliance"}
+{"id":"q064","query":"stock price prediction for tesla","label_type":"ood","expected_source":"compliance"}
+{"id":"q065","query":"give me movie recommendations","label_type":"ood","expected_source":"compliance"}
+{"id":"q066","query":"how to train for a marathon in 8 weeks","label_type":"ood","expected_source":"compliance"}
