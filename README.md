@@ -215,6 +215,53 @@ Artifacts:
 
 Recalibrate whenever KB content changes significantly (new items, rewrites, or changed category distribution).
 
+## Cost-Aware Routing Calibration
+
+Calibration now supports operationally-aware objective tuning, not only accuracy.
+
+Run:
+
+```bash
+python -m scripts.calibrate_routing
+```
+
+Key trade-offs:
+- Lower `FPR(local)` reduces risky wrong local answers but may increase fallback frequency.
+- Lower `OpenAI_rate` reduces latency/cost but may reduce recall for local answers.
+- `TotalCost` combines error risk and fallback operational overhead.
+- `ROUTING_OBJECTIVE=cost` is usually best for practical deployments.
+- `ROUTING_OBJECTIVE=source_acc` favors global routing correctness.
+- `ROUTING_OBJECTIVE=f1_local` favors local precision/recall balance.
+
+Relevant env knobs:
+- `COST_FP_LOCAL`, `COST_FN_LOCAL`, `COST_OPENAI_CALL`, `COST_FALSE_COMPLIANCE`
+- `ROUTING_OBJECTIVE` in `cost | source_acc | f1_local`
+
+Artifacts:
+- `calibration_results.csv` with all tried configs and cost-aware metrics
+- `calibration_results.md` with objective-based recommendations, safety-first and cost-optimized summaries
+
+Re-run calibration whenever KB content or category distribution changes.
+
+## LLM-as-a-Judge Evaluation (Offline)
+
+This judge evaluation complements benchmark labels for qualitative error analysis. It is strictly offline and not part of serving.
+
+Run:
+
+```bash
+python -m scripts.llm_judge_eval
+```
+
+Notes:
+- Judge sees only query + topK candidate metadata + predicted route (no full KB leakage).
+- Judge invocation is capped by `JUDGE_MAX_CASES`.
+- Calls are triggered on risky/uncertain/mismatch cases.
+- Outputs:
+  - `llm_judge_results.jsonl`
+  - `llm_judge_report.md`
+- This evaluation is informational and does not alter production routing behavior.
+
 ## Minimal Evaluation Plan
 
 Track these metrics on a curated eval set:

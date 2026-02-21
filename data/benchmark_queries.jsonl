@@ -44,6 +44,7 @@
 {"id":"q044","query":"my session ended out of nowhere","label_type":"positive","expected_source":"local","expected_match":"My session was terminated unexpectedly"}
 {"id":"q045","query":"where do i create developer api key","label_type":"positive","expected_source":"local","expected_match":"Where can I find the API key?"}
 {"id":"q046","query":"help!!! my account is locked 😭","label_type":"positive","expected_source":"local","expected_match":"help!!! 😭😭😭 my account is locked"}
+
 {"id":"q047","query":"restore my settings except notifications only","label_type":"hard_negative","expected_source":"openai"}
 {"id":"q048","query":"can i set minimum password length to 20","label_type":"hard_negative","expected_source":"openai"}
 {"id":"q049","query":"add bank transfer as payment method","label_type":"hard_negative","expected_source":"openai"}
@@ -54,6 +55,17 @@
 {"id":"q054","query":"can i enforce passkeys for all org members","label_type":"hard_negative","expected_source":"openai"}
 {"id":"q055","query":"show webhook example for billing events","label_type":"hard_negative","expected_source":"openai"}
 {"id":"q056","query":"my app crash only on ios 17 beta when offline","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q067","query":"reset password without knowing current password","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q068","query":"can i partially refund a subscription","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q069","query":"add apple pay payment method","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q070","query":"download invoices via api endpoint","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q071","query":"generate recovery codes for 2fa","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q072","query":"lost authenticator phone how to recover","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q073","query":"export data in parquet format","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q074","query":"pause subscription for 6 months and keep seat reserved","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q075","query":"billing webhook payload example","label_type":"hard_negative","expected_source":"openai"}
+{"id":"q076","query":"restrict login to passkeys only","label_type":"hard_negative","expected_source":"openai"}
+
 {"id":"q057","query":"what is the weather in bucharest today","label_type":"ood","expected_source":"compliance"}
 {"id":"q058","query":"write me a poem about databases","label_type":"ood","expected_source":"compliance"}
 {"id":"q059","query":"who won champions league in 2020","label_type":"ood","expected_source":"compliance"}
@@ -64,3 +76,13 @@
 {"id":"q064","query":"stock price prediction for tesla","label_type":"ood","expected_source":"compliance"}
 {"id":"q065","query":"give me movie recommendations","label_type":"ood","expected_source":"compliance"}
 {"id":"q066","query":"how to train for a marathon in 8 weeks","label_type":"ood","expected_source":"compliance"}
+{"id":"q077","query":"how tall is mount everest","label_type":"ood","expected_source":"compliance"}
+{"id":"q078","query":"convert 10 usd to eur","label_type":"ood","expected_source":"compliance"}
+{"id":"q079","query":"what is machine learning","label_type":"ood","expected_source":"compliance"}
+{"id":"q080","query":"top 10 sci fi movies","label_type":"ood","expected_source":"compliance"}
+{"id":"q081","query":"summarize the book dune","label_type":"ood","expected_source":"compliance"}
+{"id":"q082","query":"python list comprehension examples","label_type":"ood","expected_source":"compliance"}
+{"id":"q083","query":"capital of australia","label_type":"ood","expected_source":"compliance"}
+{"id":"q084","query":"best workouts for abs","label_type":"ood","expected_source":"compliance"}
+{"id":"q085","query":"recipe for chocolate cake","label_type":"ood","expected_source":"compliance"}
+{"id":"q086","query":"history of the roman empire","label_type":"ood","expected_source":"compliance"}

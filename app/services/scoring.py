@@ -52,6 +52,21 @@ def _jaccard(a: set[str], b: set[str]) -> float:
     return len(a.intersection(b)) / len(a.union(b))
 
 
+LEXICAL_BOOST_TOKENS: set[str] = {"reset", "password", "email", "invoice", "refund"}
+
+
+def _weighted_overlap(query_tokens: set[str], candidate_tokens: set[str]) -> float:
+    if not query_tokens or not candidate_tokens:
+        return 0.0
+    common = query_tokens.intersection(candidate_tokens)
+    base = len(common) / len(query_tokens)
+    keyword_boost = 0.0
+    for token in LEXICAL_BOOST_TOKENS:
+        if token in common:
+            keyword_boost += 0.12
+    return min(1.0, base + keyword_boost)
+
+
 class CosineThresholdStrategy:
     name = "cosine_threshold"
 
@@ -123,14 +138,11 @@ class HybridRerankStrategy:
         query_tokens = _tokenize(query_norm)
         scored: list[tuple[RetrievalResult, float, float, float]] = []
         for candidate in candidates:
-            lexical = _jaccard(query_tokens, _tokenize(candidate.question_norm or candidate.question))
-            category_boost = (
-                1.0
-                if predicted_category
-                and predicted_category != "N/A"
-                and candidate.category == predicted_category
-                else 0.0
-            )
+            candidate_tokens = _tokenize(candidate.question_norm or candidate.question)
+            lexical = _weighted_overlap(query_tokens, candidate_tokens)
+            category_boost = 0.0
+            if predicted_category and predicted_category != "N/A":
+                category_boost = 1.0 if candidate.category == predicted_category else -0.35
             final_score = (
                 self.alpha * candidate.score
                 + self.beta * lexical
@@ -154,6 +166,7 @@ class HybridRerankStrategy:
                 "gamma": self.gamma,
                 "best_lexical": round(best_lexical, 4),
                 "best_category_boost": best_boost,
+                "lexical_mode": "weighted_overlap",
                 "ranked_questions": [item[0].question for item in scored],
                 "ranked_scores": [round(item[1], 4) for item in scored],
             },

@@ -21,6 +21,14 @@ class EvaluationMetrics:
     fp_local: int
     fn_local: int
     tn_local: int
+    predicted_local: int
+    predicted_openai: int
+    predicted_compliance: int
+    false_compliance: int
+    kb_utilization: float
+    local_rate: float
+    openai_rate: float
+    total_cost: float
 
 
 def compute_local_metrics(
@@ -34,6 +42,14 @@ def compute_local_metrics(
     fp_local: int,
     fn_local: int,
     tn_local: int,
+    predicted_local: int,
+    predicted_openai: int,
+    predicted_compliance: int,
+    false_compliance: int,
+    cost_fp_local: float,
+    cost_fn_local: float,
+    cost_openai_call: float,
+    cost_false_compliance: float,
 ) -> EvaluationMetrics:
     source_accuracy = _safe_div(source_correct, source_total)
     top1_accuracy = _safe_div(top1_hits, positive_total)
@@ -48,6 +64,15 @@ def compute_local_metrics(
     precision_local = _safe_div(tp_local, tp_local + fp_local)
     recall_local = _safe_div(tp_local, tp_local + fn_local)
     f1_local = _safe_div(2 * precision_local * recall_local, precision_local + recall_local)
+    kb_utilization = _safe_div(tp_local, positive_total)
+    local_rate = _safe_div(predicted_local, source_total)
+    openai_rate = _safe_div(predicted_openai, source_total)
+    total_cost = (
+        cost_fp_local * fp_local
+        + cost_fn_local * fn_local
+        + cost_openai_call * predicted_openai
+        + cost_false_compliance * false_compliance
+    )
 
     return EvaluationMetrics(
         source_accuracy=source_accuracy,
@@ -62,6 +87,14 @@ def compute_local_metrics(
         fp_local=fp_local,
         fn_local=fn_local,
         tn_local=tn_local,
+        predicted_local=predicted_local,
+        predicted_openai=predicted_openai,
+        predicted_compliance=predicted_compliance,
+        false_compliance=false_compliance,
+        kb_utilization=kb_utilization,
+        local_rate=local_rate,
+        openai_rate=openai_rate,
+        total_cost=total_cost,
     )
 
 
@@ -75,8 +108,5 @@ def objective_f1_local(metrics: EvaluationMetrics) -> float:
 
 def objective_routing_cost(
     metrics: EvaluationMetrics,
-    *,
-    cost_fp_local: float,
-    cost_fn_local: float,
 ) -> float:
-    return (cost_fp_local * metrics.fp_local) + (cost_fn_local * metrics.fn_local)
+    return metrics.total_cost

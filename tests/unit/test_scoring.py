@@ -75,3 +75,28 @@ def test_hybrid_category_boost_and_score_cap() -> None:
     )
     assert selection.final_confidence is not None
     assert 0.0 <= selection.final_confidence <= 1.0
+
+
+def test_hybrid_rerank_prefers_reset_email_candidate_for_q020_like_query() -> None:
+    candidates = [
+        _candidate(
+            question="Pause email notifications",
+            score=0.84,
+            category="notifications",
+            question_norm="pause email notifications",
+        ),
+        _candidate(
+            question="I didn't get the password reset email",
+            score=0.78,
+            category="security",
+            question_norm="i didnt get the password reset email",
+        ),
+    ]
+    hybrid = HybridRerankStrategy(alpha=0.6, beta=0.3, gamma=0.1)
+    selection = hybrid.score_candidates(
+        "reset email not received after 10 mins",
+        candidates,
+        predicted_category="security",
+    )
+    assert selection.best is not None
+    assert selection.best.question == "I didn't get the password reset email"

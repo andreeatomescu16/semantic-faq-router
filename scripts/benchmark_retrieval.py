@@ -74,6 +74,8 @@ def _load_benchmark_rows(path: Path) -> list[BenchmarkRow]:
     rows: list[BenchmarkRow] = []
     with path.open("r", encoding="utf-8") as handle:
         for line in handle:
+            if not line.strip():
+                continue
             payload = json.loads(line)
             rows.append(
                 BenchmarkRow(
@@ -191,15 +193,6 @@ def main() -> None:
                 continue
 
             domain = router.route_domain(row.query)
-            if not domain.in_domain:
-                for strategy in strategies:
-                    metric = metrics[strategy.name]
-                    metric.source_total += 1
-                    metric.expected_not_local_total += 1
-                    predicted_source = "compliance"
-                    if predicted_source == row.expected_source:
-                        metric.source_correct += 1
-                continue
 
             query_embedding = _get_query_embedding(query_norm=query_norm, cache=cache, embedder=embedder)
             retrieval_decision = retrieval.retrieve_candidates_from_embedding(
@@ -217,7 +210,7 @@ def main() -> None:
                 predicted_source = (
                     "local"
                     if strategy.accepts_local(selection=selection, threshold=settings.similarity_threshold)
-                    else "openai"
+                    else ("openai" if domain.in_domain else "compliance")
                 )
                 metric = metrics[strategy.name]
                 metric.source_total += 1

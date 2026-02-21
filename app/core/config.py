@@ -25,6 +25,16 @@ class Settings(BaseSettings):
     hybrid_alpha: float = Field(default=0.7, alias="HYBRID_ALPHA")
     hybrid_beta: float = Field(default=0.2, alias="HYBRID_BETA")
     hybrid_gamma: float = Field(default=0.1, alias="HYBRID_GAMMA")
+    cost_fp_local: float = Field(default=8.0, alias="COST_FP_LOCAL")
+    cost_fn_local: float = Field(default=2.0, alias="COST_FN_LOCAL")
+    cost_openai_call: float = Field(default=0.3, alias="COST_OPENAI_CALL")
+    cost_false_compliance: float = Field(default=3.0, alias="COST_FALSE_COMPLIANCE")
+    routing_objective: str = Field(default="cost", alias="ROUTING_OBJECTIVE")
+    judge_enabled: bool = Field(default=True, alias="JUDGE_ENABLED")
+    judge_model: str = Field(default="gpt-5-mini", alias="JUDGE_MODEL")
+    judge_max_cases: int = Field(default=50, alias="JUDGE_MAX_CASES")
+    judge_gray_low: float = Field(default=0.55, alias="JUDGE_GRAY_LOW")
+    judge_gray_high: float = Field(default=0.70, alias="JUDGE_GRAY_HIGH")
 
     openai_chat_model: str = Field(default="gpt-4o-mini", alias="OPENAI_CHAT_MODEL")
     openai_embedding_model: str = Field(
