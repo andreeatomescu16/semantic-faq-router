@@ -1,4 +1,7 @@
+from pathlib import Path
+
 from fastapi import APIRouter, Depends
+from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db, get_qa_service, get_token, get_trace_id
@@ -6,6 +9,12 @@ from app.schemas.api import AskQuestionRequest, AskQuestionResponse
 from app.services.qa_service import QAService
 
 router = APIRouter()
+WEB_UI_PATH = Path(__file__).resolve().parents[1] / "web" / "index.html"
+
+
+@router.get("/", response_class=HTMLResponse, include_in_schema=False)
+def web_ui() -> HTMLResponse:
+    return HTMLResponse(content=WEB_UI_PATH.read_text(encoding="utf-8"))
 
 
 @router.get("/healthz", summary="Liveness probe")
