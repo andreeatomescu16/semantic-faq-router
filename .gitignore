@@ -4,3 +4,4 @@ __pycache__/
 .env
 *.pyc
 *.pyo
+docker_app_from_container/
