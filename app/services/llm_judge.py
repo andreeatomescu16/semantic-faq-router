@@ -1,4 +1,5 @@
 import json
+import yaml
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal
@@ -81,50 +82,9 @@ def _judge_schema_json() -> str:
 def _load_judge_prompt_config(path: Path) -> JudgePromptConfig:
     if not path.exists():
         raise FileNotFoundError(f"Missing judge prompt config: {path}")
-    lines = path.read_text(encoding="utf-8").splitlines()
-    blocks: dict[str, list[str]] = {}
-    current_key: str | None = None
-    current_lines: list[str] = []
-
-    def flush() -> None:
-        nonlocal current_key, current_lines
-        if current_key is not None:
-            blocks[current_key] = current_lines.copy()
-        current_key = None
-        current_lines = []
-
-    idx = 0
-    while idx < len(lines):
-        line = lines[idx]
-        if line.strip() == "---":
-            idx += 1
-            continue
-        if line.startswith("system_prompt: |"):
-            flush()
-            current_key = "system_prompt"
-            idx += 1
-            continue
-        if line.startswith("user_template: |"):
-            flush()
-            current_key = "user_template"
-            idx += 1
-            continue
-        if current_key is not None:
-            if line.startswith("  "):
-                current_lines.append(line[2:])
-                idx += 1
-                continue
-            if line.strip() == "":
-                current_lines.append("")
-                idx += 1
-                continue
-            flush()
-            continue
-        idx += 1
-    flush()
-
-    system_prompt = "\n".join(blocks.get("system_prompt", []))
-    user_template = "\n".join(blocks.get("user_template", []))
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    system_prompt = (data.get("system_prompt") or "").strip()
+    user_template = (data.get("user_template") or "").strip()
     if not system_prompt or not user_template:
         raise ValueError("judge_prompt.yaml must define system_prompt and user_template.")
     return JudgePromptConfig(system_prompt=system_prompt, user_template=user_template)

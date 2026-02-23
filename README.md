@@ -271,7 +271,7 @@ TotalCost =
 + COST_FALSE_COMPLIANCE * False_compliance
 ```
 
-Default cost config (from your report):
+Default cost config:
 
 ```
 COST_FP_LOCAL=8.0
@@ -333,8 +333,6 @@ The judge outputs:
 - preferred_index (only if local)
 - severity
 - rationale
-
-This is informational and **not part of serving**.
 
 ---
 
@@ -558,6 +556,26 @@ Calibration / evaluation:
 - `COST_FP_LOCAL`, `COST_FN_LOCAL`, `COST_OPENAI_CALL`, `COST_FALSE_COMPLIANCE`
 - `ROUTING_OBJECTIVE` in `cost | source_acc | f1_local`
 - `JUDGE_MAX_CASES`
+
+---
+
+## Appendix: Web UI
+
+The application includes a built-in chat-like UI for testing the assistant interactively.
+
+After starting the stack, open:
+
+```
+http://localhost:8000
+```
+
+Features:
+- Enter your `API_AUTH_TOKEN` and ask any question in natural language
+- Response shows the **source** (`local` / `openai` / `compliance`), **confidence score**, **matched question**, and **trace ID**
+- Quick-fill buttons for common test scenarios (profile update, out-of-domain, OpenAI fallback)
+- "Copy answer" button for easy sharing
+
+No extra setup needed — the UI is served directly by FastAPI at `GET /`.
 
 ---
 

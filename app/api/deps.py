@@ -11,6 +11,7 @@ from app.services.qa_service import QAService
 from app.services.retrieval import RetrievalService
 from app.services.router import DomainRouter
 from app.services.scoring import build_scoring_strategy
+import secrets
 
 
 def get_db() -> Generator[Session, None, None]:
@@ -38,7 +39,7 @@ def get_token(
             detail="Missing bearer token.",
         )
     token = authorization.split(" ", maxsplit=1)[1].strip()
-    if token != settings.api_auth_token:
+    if not secrets.compare_digest(token, settings.api_auth_token):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid bearer token.",
